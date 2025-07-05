@@ -1,0 +1,379 @@
+/* 🎨 Variáveis Globais */
+:root {
+  --cor-destaque: #f72585;
+  --cor-destaque-2: #7209b7;
+  --cor-texto: #ffffff;
+  --cor-texto-fraco: #cccccc;
+  --cor-botao: #3a0ca3;
+  --cor-botao-hover: #4361ee;
+  --cor-cassete-1: #ef233c;
+  --cor-cassete-2: #06d6a0;
+  --cor-cassete-3: #3a86ff;
+
+  --fonte-principal: 'Press Start 2P', monospace;
+  --duracao: 0.3s;
+}
+
+/* 🌐 Reset e Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: var(--fonte-principal);
+  color: var(--cor-texto);
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+/* 🎬 Plano de Fundo */
+.bg-img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -2;
+}
+
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(13, 13, 13, 0.6), rgba(13, 13, 13, 0.9));
+  z-index: -1;
+}
+
+/* 📦 Containers e Seções */
+.container {
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto 70px;
+  text-align: center;
+}
+
+.section {
+  display: none;
+}
+
+.section.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding-bottom: 90px;
+}
+
+/* 📼 Cassete */
+.cassette-wrapper {
+  width: 100%;
+  max-width: 300px;
+  margin-bottom: 20px;
+}
+
+.cassette-wrapper img {
+  width: 100%;
+  transition: filter var(--duracao), transform 0.3s ease;
+}
+
+#cassette.rodando {
+  animation: girar 3s linear infinite;
+}
+
+@keyframes girar {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 📝 Info da Faixa */
+.track-info {
+  margin-bottom: 50px;
+}
+
+.track-info h2 {
+  font-size: 15px;
+  color: var(--cor-destaque);
+}
+
+.track-info p {
+  font-size: 10px;
+  color: var(--cor-texto-fraco);
+  margin-top: 10px;
+}
+
+/* 🎛️ Controles */
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.controls button {
+  background: var(--cor-botao);
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--duracao);
+}
+
+.controls button:hover {
+  background-color: var(--cor-botao-hover);
+}
+
+.controls button.active {
+  background-color: var(--cor-destaque);
+  transform: scale(1.05);
+}
+
+.controls img {
+  width: 24px;
+  height: 24px;
+  filter: invert(1);
+}
+
+/* 🔘 Barra de Progresso */
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: -10px 0 30px;
+  padding: 0 10px;
+}
+
+#progress {
+  flex: 1;
+  height: 6px;
+  border-radius: 4px;
+  background: linear-gradient(to right, var(--cor-destaque) 0%, #444 0%);
+  cursor: pointer;
+}
+
+#progress::-webkit-slider-thumb,
+#progress::-moz-range-thumb {
+  height: 14px;
+  width: 14px;
+  background: var(--cor-destaque);
+  border-radius: 50%;
+  border: none;
+  margin-top: -4px;
+}
+
+/* ⏱️ Tempo */
+#current-time,
+#duration {
+  font-size: 8px;
+  color: var(--cor-texto-fraco);
+  min-width: 35px;
+  text-align: center;
+}
+
+/* 📱 Navbar Inferior */
+.bottom-navbar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+  border-top: 2px solid var(--cor-destaque-2);
+  z-index: 10;
+}
+
+.nav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  filter: invert(0.8);
+  transition: transform 0.2s ease;
+}
+
+.nav-btn.active {
+  filter: invert(1);
+  transform: scale(1.2);
+}
+
+/* 📚 Biblioteca */
+#library-section h2,
+#minigame-section h2 {
+  font-size: 12px;
+  margin-bottom: 20px;
+  color: var(--cor-destaque);
+}
+
+#track-list {
+  list-style: none;
+  padding: 0 10px;
+}
+
+.library-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.library-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.library-item.playing {
+  border: 1px solid var(--cor-destaque);
+  background: rgba(247, 37, 133, 0.15);
+  animation: brilho-pulsante 1.2s infinite alternate;
+  box-shadow: 0 0 8px var(--cor-destaque-2);
+}
+
+@keyframes brilho-pulsante {
+  0% {
+    box-shadow: 0 0 8px var(--cor-destaque-2);
+  }
+  100% {
+    box-shadow: 0 0 16px var(--cor-destaque-2);
+  }
+}
+
+.cover {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.info {
+  text-align: left;
+  font-size: 8px;
+  color: var(--cor-texto-fraco);
+}
+
+/* 🎮 Minigame */
+#minigame-section {
+  text-align: center;
+  padding: 20px;
+  color: var(--cor-botao);
+}
+
+.scoreboard {
+  font-size: 14px;
+  margin: 20px 0;
+  color: var(--cor-destaque);
+}
+
+.game-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+.hands {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 60px;
+}
+
+.hand {
+  width: 100px;
+  height: 100px;
+  filter: invert(1);
+  transition: transform 0.2s;
+}
+
+.hand.animate {
+  animation: shake 0.5s ease infinite;
+}
+
+@keyframes shake {
+  0% { transform: rotate(0deg); }
+  25% { transform: rotate(15deg); }
+  50% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.choices {
+  display: flex;
+  gap: 20px;
+}
+
+.choices button {
+  background: var(--cor-destaque-2);
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.choices button:hover {
+  background: var(--cor-destaque);
+}
+
+.choices img {
+  width: 40px;
+  height: 40px;
+  filter: invert(1);
+}
+
+.result,
+.vs {
+  font-size: 14px;
+  color: var(--cor-destaque);
+  min-height: 30px;
+}
+
+/* 🌟 Tela Inicial (Splash Screen) */
+.splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: url("../assets/img/My-Cassette.png") no-repeat center center;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeOut 5s ease 1s forwards;
+  font-family: var(--fonte-principal);
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 14ch; }
+}
+
+@keyframes blink {
+  50% { border-color: transparent; }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}

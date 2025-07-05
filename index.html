@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My-Cassette Player</title>
+
+  <!-- 🎨 Estilos -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+
+  <!-- 🌐 Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg"/>
+  <meta name="theme-color" content="#f72585" />
+</head>
+
+<body>
+  <!-- 🌟 Splash Screen -->
+  <div id="splash" class="splash-screen">
+    <div class="splash-content">
+    </div>
+  </div>
+
+  <!-- 🌄 Fundo e Sobreposição -->
+  <img src="assets/img/fundo.png" alt="Plano de fundo" class="bg-img" />
+  <div class="video-overlay"></div>
+
+  <!-- 🎵 Seção do Player -->
+  <main class="container section active" id="player-section">
+    <div class="cassette-wrapper">
+      <img src="assets/img/disco.svg" alt="Cassette" id="cassette" />
+    </div>
+
+    <div class="track-info">
+      <h2 id="track-title">Título da Música</h2>
+      <p id="track-artist">Nome do Artista</p>
+    </div>
+
+    <div class="progress-container">
+      <span id="current-time">00:00</span>
+      <input type="range" id="progress" min="0" max="100" value="0" />
+      <span id="duration">00:00</span>
+    </div>
+
+    <div class="controls">
+      <button id="loop" title="Loop">
+        <img src="https://api.iconify.design/mdi/repeat.svg" alt="Loop" />
+      </button>
+      <button id="prev">
+        <img src="https://api.iconify.design/mdi/skip-previous.svg" alt="Anterior" />
+      </button>
+      <button id="play">
+        <img src="https://api.iconify.design/mdi/play.svg" alt="Play" id="play-icon" />
+      </button>
+      <button id="next">
+        <img src="https://api.iconify.design/mdi/skip-next.svg" alt="Próximo" />
+      </button>
+      <button id="shuffle" title="Aleatório">
+        <img src="https://api.iconify.design/mdi/shuffle-variant.svg" alt="Aleatório" />
+      </button>
+    </div>
+
+    <audio id="audio-player"></audio>
+  </main>
+
+  <!-- 📚 Biblioteca de Músicas -->
+  <section class="container section" id="library-section">
+    <h2>Biblioteca</h2>
+    <ul id="track-list"></ul>
+  </section>
+
+  <!-- 🎮 Minigame Jokenpô -->
+  <section class="container section" id="minigame-section">
+    <h2>🎮 JOKENPÔ RETRÔ</h2>
+    <div class="scoreboard" id="scoreboard">Você: 0 | PC: 0</div>
+
+    <div class="game-area">
+      <div class="hands">
+        <img src="https://api.iconify.design/openmoji/raised-fist.svg" alt="Você" id="player-hand" class="hand" />
+        <span class="vs">VS</span>
+        <img src="https://api.iconify.design/openmoji/raised-fist.svg" alt="PC" id="cpu-hand" class="hand" />
+      </div>
+
+      <div class="choices">
+        <button data-move="pedra" title="Pedra">
+          <img src="https://api.iconify.design/openmoji/raised-fist.svg" alt="Pedra" />
+        </button>
+        <button data-move="papel" title="Papel">
+          <img src="https://api.iconify.design/openmoji/raised-hand.svg" alt="Papel" />
+        </button>
+        <button data-move="tesoura" title="Tesoura">
+          <img src="https://api.iconify.design/openmoji/victory-hand.svg" alt="Tesoura" />
+        </button>
+      </div>
+
+      <div class="result" id="result">Faça sua jogada!</div>
+    </div>
+  </section>
+
+  <!-- 🧭 Navegação Inferior -->
+  <nav class="bottom-navbar">
+    <button class="nav-btn active" data-section="player-section">
+      <img src="https://api.iconify.design/ph/cassette-tape.svg" alt="Player" />
+    </button>
+    <button class="nav-btn" data-section="library-section">
+      <img src="https://api.iconify.design/ph/music-notes.svg" alt="Biblioteca" />
+    </button>
+    <button class="nav-btn" data-section="minigame-section">
+      <img src="https://api.iconify.design/ph/game-controller.svg" alt="Minigame" />
+    </button>
+  </nav>
+
+  <!-- ⚙️ Script Principal -->
+  <script src="script/script.js"></script>
+</body>
+
+</html>
+tml>
